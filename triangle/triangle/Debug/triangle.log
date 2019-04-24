@@ -1,0 +1,4 @@
+﻿  源.cpp
+c:\users\德玛西亚\desktop\文件\use\leetcode\triangle\triangle\源.cpp(78): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\德玛西亚\desktop\文件\use\leetcode\triangle\triangle\源.cpp(58): warning C4715: “Solution1::minimumTotal”: 不是所有的控件路径都返回值
+  triangle.vcxproj -> C:\Users\德玛西亚\Desktop\文件\use\leetcode\triangle\Debug\triangle.exe
