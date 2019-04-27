@@ -1,3 +1,43 @@
+/*Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+
+Note:
+
+    The same word in the dictionary may be reused multiple times in the segmentation.
+    You may assume the dictionary does not contain duplicate words.
+
+Example 1:
+
+Input:
+s = "catsanddog"
+wordDict = ["cat", "cats", "and", "sand", "dog"]
+Output:
+[
+  "cats and dog",
+  "cat sand dog"
+]
+
+Example 2:
+
+Input:
+s = "pineapplepenapple"
+wordDict = ["apple", "pen", "applepen", "pine", "pineapple"]
+Output:
+[
+  "pine apple pen apple",
+  "pineapple pen apple",
+  "pine applepen apple"
+]
+Explanation: Note that you are allowed to reuse a dictionary word.
+
+Example 3:
+
+Input:
+s = "catsandog"
+wordDict = ["cats", "dog", "sand", "and", "cat"]
+Output:
+[]*/
+
+
 #include<string>
 #include<algorithm>
 #include<vector>
@@ -13,24 +53,24 @@ public:
 	vector<string> wordBreak(string s, unordered_set<string> &dict)
 	{
 		vector<string> res;
-		if (dict.find(s) != dict.end())//sÒÑ¾­ÊÇdictÖĞµÄÄ³Ò»¸öÁË
+		if (dict.find(s) != dict.end())//så·²ç»æ˜¯dictä¸­çš„æŸä¸€ä¸ªäº†
 			res.push_back(s);
 
 		int len = s.size();
 		for (int i = 1; i < len; ++i)
 		{
-			string word = s.substr(i);//wordÊÇs´Ós[i]µ½sÄ©Î²µÄÄÇÄÇ¸ö×Ö·û´®
-			if (dict.find(word) == dict.end())//word²»ÊÇdictÖĞµÄÈÎºÎÒ»¸ö
+			string word = s.substr(i);//wordæ˜¯sä»s[i]åˆ°sæœ«å°¾çš„é‚£é‚£ä¸ªå­—ç¬¦ä¸²
+			if (dict.find(word) == dict.end())//wordä¸æ˜¯dictä¸­çš„ä»»ä½•ä¸€ä¸ª
 				continue;
 			vector<string> tempRes = wordBreak(s.substr(0, i), dict);
 			Combine(tempRes, word);
-			res.insert(res.begin(), tempRes.begin(), tempRes.end());//¸ù¾İ´ğ°¸µÄ±íÊ¾ĞÎÊ½£¬ÎÒÃÇ×öÏàÓ¦µÄresÊä³öË³Ğòµ÷Õû
+			res.insert(res.begin(), tempRes.begin(), tempRes.end());//æ ¹æ®ç­”æ¡ˆçš„è¡¨ç¤ºå½¢å¼ï¼Œæˆ‘ä»¬åšç›¸åº”çš„resè¾“å‡ºé¡ºåºè°ƒæ•´
 		}
 		return res;
 	}
-	void Combine(vector<string>& v, const string& str)//¶Ôv¸Ä±ä£¬·µ»ØµÄv£¬ËùÒÔÒıÓÃv
+	void Combine(vector<string>& v, const string& str)//å¯¹væ”¹å˜ï¼Œè¿”å›çš„vï¼Œæ‰€ä»¥å¼•ç”¨v
 	{
 		for (vector<string>::iterator iter = v.begin(); iter != v.end(); ++iter)
-			*iter +=( " " + str);//stringÖ±½Ó¾Í¿ÉÒÔÓÃ+ +=À´Æ´½Ó×Ö·û´®
+			*iter +=( " " + str);//stringç›´æ¥å°±å¯ä»¥ç”¨+ +=æ¥æ‹¼æ¥å­—ç¬¦ä¸²
 	}
 };
