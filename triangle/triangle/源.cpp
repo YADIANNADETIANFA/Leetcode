@@ -1,3 +1,20 @@
+/*Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+
+For example, given the following triangle
+
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+
+The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+
+Note:
+
+Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.*/
+
 #include<cstdio>
 #include<iostream>
 #include<vector>
@@ -5,7 +22,7 @@
 #include<deque>
 using namespace std;
 
-/*class Solution//ÉÏ²ãµ½ÏÂ²ãÖ»ÄÜÈ¡ÁÙ½ü½Úµã£¬²»ÊÇÃ¿²ãÈÎÒâÈ¡£¬ËùÒÔÕâ¸öÊÇĞĞ²»Í¨µÄ
+/*class Solution//ä¸Šå±‚åˆ°ä¸‹å±‚åªèƒ½å–ä¸´è¿‘èŠ‚ç‚¹ï¼Œä¸æ˜¯æ¯å±‚ä»»æ„å–ï¼Œæ‰€ä»¥è¿™ä¸ªæ˜¯è¡Œä¸é€šçš„
 {
 public:
 	int minimumTotal(vector<vector<int>> &triangle)
@@ -27,9 +44,9 @@ public:
 	}
 };*/
 
-/*class Solution1//µİ¹éËã·¨£¬×ÔÉÏ¶øÏÂ,µ«ÊÇĞèÒª¸ÄÎªË«¶Ë¶ÓÁĞ,²»¿¼ÂÇ£¬¶øÇÒºÜÂé·³£¬pop»òÕßpush_backµ±É¾ÖÁsize=0Ê±£¬
-{                       //»á±£ÁôÒ»¸ösize=0µÄ¿ÕÖ¸ÕëÕ¼Î»£¬²»»á¼òµ¥°ÑÕâĞĞÊı×éÏñÏëÏóÖĞÄÇÑù¸øÉ¾Ã»£¬È»ºó2ºÅÊı×é×Ô¼º±äÎª1ºÅÊı×é£¬
-public:                 //±ÈÈçÈç¹û1ºÅÊı×éÖ»ÓĞÒ»¸öÔªËØ£¬É¾ÁËÖ®ºóÒ»ºÅÊı×é»¹ÊÇ´æÔÚ£¬ÒÔsizeÎª0µÄnullptrÕ¼Î»´æÔÚ£¬¼´2ºÅÊı×é²»»á×Ô¶¯ÉıÎª1ºÅÊı×é
+/*class Solution1//é€’å½’ç®—æ³•ï¼Œè‡ªä¸Šè€Œä¸‹,ä½†æ˜¯éœ€è¦æ”¹ä¸ºåŒç«¯é˜Ÿåˆ—,ä¸è€ƒè™‘ï¼Œè€Œä¸”å¾ˆéº»çƒ¦ï¼Œpopæˆ–è€…push_backå½“åˆ è‡³size=0æ—¶ï¼Œ
+{                       //ä¼šä¿ç•™ä¸€ä¸ªsize=0çš„ç©ºæŒ‡é’ˆå ä½ï¼Œä¸ä¼šç®€å•æŠŠè¿™è¡Œæ•°ç»„åƒæƒ³è±¡ä¸­é‚£æ ·ç»™åˆ æ²¡ï¼Œç„¶å2å·æ•°ç»„è‡ªå·±å˜ä¸º1å·æ•°ç»„ï¼Œ
+public:                 //æ¯”å¦‚å¦‚æœ1å·æ•°ç»„åªæœ‰ä¸€ä¸ªå…ƒç´ ï¼Œåˆ äº†ä¹‹åä¸€å·æ•°ç»„è¿˜æ˜¯å­˜åœ¨ï¼Œä»¥sizeä¸º0çš„nullptrå ä½å­˜åœ¨ï¼Œå³2å·æ•°ç»„ä¸ä¼šè‡ªåŠ¨å‡ä¸º1å·æ•°ç»„
 	int minimumTotal(deque<deque<int>> &triangle)
 	{
 		int len = triangle.size();
@@ -58,13 +75,13 @@ public:                 //±ÈÈçÈç¹û1ºÅÊı×éÖ»ÓĞÒ»¸öÔªËØ£¬É¾ÁËÖ®ºóÒ»ºÅÊı×é»¹ÊÇ´æÔÚ£
 	}
 };*/
 
-//´ËÌâÈç¹û¿ÉÒÔĞŞ¸ÄÔ­vectorºÜ¼òµ¥£¬Ö±½Ó´ÓÉÏÃæ¼Óµ½ÏÂÃæ¾ÍĞĞÁË£»
-//µİ¹éµÄ»°£¬´ËÌâ²»»áÓĞ¶àÓàÔËËã£¬µ«ÊÇÓĞÕ»Òç³öµÄ¿ÉÄÜ
+//æ­¤é¢˜å¦‚æœå¯ä»¥ä¿®æ”¹åŸvectorå¾ˆç®€å•ï¼Œç›´æ¥ä»ä¸Šé¢åŠ åˆ°ä¸‹é¢å°±è¡Œäº†ï¼›
+//é€’å½’çš„è¯ï¼Œæ­¤é¢˜ä¸ä¼šæœ‰å¤šä½™è¿ç®—ï¼Œä½†æ˜¯æœ‰æ ˆæº¢å‡ºçš„å¯èƒ½
 /*
         1    2    3
-      1   2    3    4    ÒÔ´Ë¾ÙÀı£¬ÉÏÒ»²ãµÄ1Î»ÖÃ´æ·ÅÏÂÒ»²ã1¡¢2µÄ×îĞ¡Öµ£»ÉÏÒ»²ãµÄ2Î»ÖÃ´æ·ÅÏÂÒ»²ã2¡¢3µÄ×îĞ¡Öµ£»ÉÏÒ»²ãµÄ3Î»ÖÃ´æ·ÅÏÂÒ»²ã3¡¢4µÄ×îĞ¡Öµ£»
+      1   2    3    4    ä»¥æ­¤ä¸¾ä¾‹ï¼Œä¸Šä¸€å±‚çš„1ä½ç½®å­˜æ”¾ä¸‹ä¸€å±‚1ã€2çš„æœ€å°å€¼ï¼›ä¸Šä¸€å±‚çš„2ä½ç½®å­˜æ”¾ä¸‹ä¸€å±‚2ã€3çš„æœ€å°å€¼ï¼›ä¸Šä¸€å±‚çš„3ä½ç½®å­˜æ”¾ä¸‹ä¸€å±‚3ã€4çš„æœ€å°å€¼ï¼›
 */
-class Solution2//µü´úËã·¨£¬×ÔÏÂ¶øÉÏ£¬ËùĞè¸¨ÖúÄÚ´æ´óĞ¡Îª£¬×îºóÒ»ĞĞÔªËØµÄ¸öÊı¼´×ÜĞĞÊın
+class Solution2//è¿­ä»£ç®—æ³•ï¼Œè‡ªä¸‹è€Œä¸Šï¼Œæ‰€éœ€è¾…åŠ©å†…å­˜å¤§å°ä¸ºï¼Œæœ€åä¸€è¡Œå…ƒç´ çš„ä¸ªæ•°å³æ€»è¡Œæ•°n
 {
 public:
 	int minimumTotal(vector<vector<int>> &triangle)
@@ -87,20 +104,20 @@ public:
 
 int main()
 {
-	int n;//nĞĞ
+	int n;//nè¡Œ
 	while (cin >> n)
 	{
 		vector<vector<int>> triangle;
 		for (int i = 0; i < n; ++i)
 		{
-			vector<int> num(i+1,0);//Ã¿ĞĞ¸øÒ»¸övector
+			vector<int> num(i+1,0);//æ¯è¡Œç»™ä¸€ä¸ªvector
 			triangle.push_back(num);
 		}
 		for (int i = 1; i <= n; ++i)
 		{
 			for (int j = 1; j <= i; ++j)
 			{
-				cin >> triangle[i - 1][j - 1];//ÊäÈëÉú³Étriangle
+				cin >> triangle[i - 1][j - 1];//è¾“å…¥ç”Ÿæˆtriangle
 			}
 		}
 		Solution2 RES;
