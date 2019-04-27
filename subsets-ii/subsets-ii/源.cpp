@@ -1,10 +1,28 @@
+/*Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+
+Note: The solution set must not contain duplicate subsets.
+
+Example:
+
+Input: [1,2,2]
+Output:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]*/
+
+
 #include<iostream>
 #include<cstdio>
 #include<vector>
 #include<algorithm>
 using namespace std;
 
-class Solution//½á¹ûÕıÈ·£¬µ«¸´ÔÓ¶È¸ß£¬ÄÚ´æÕ¼ÓÃ´ó£¬ÅÅĞò»¹²»×¼È·
+class Solution//ç»“æœæ­£ç¡®ï¼Œä½†å¤æ‚åº¦é«˜ï¼Œå†…å­˜å ç”¨å¤§ï¼Œæ’åºè¿˜ä¸å‡†ç¡®
 {
 public:
 	vector<vector<int>> subsetsWithDup(vector<int>& S)
@@ -13,7 +31,7 @@ public:
 		vector<vector<int>> Res;
 
 		vector<int>::iterator iter1 = S.begin();
-		for (;iter1 != S.end(); ++iter1)//Ìõ¼ş¿ÉÒÔÊ¡£¬µ«ÊÇ£»±ØĞëÒªÁ½¸ö¶¼ÓĞ
+		for (;iter1 != S.end(); ++iter1)//æ¡ä»¶å¯ä»¥çœï¼Œä½†æ˜¯ï¼›å¿…é¡»è¦ä¸¤ä¸ªéƒ½æœ‰
 		{
 			int len = Res.size();
 			vector<vector<int>>::iterator iter2 = Res.begin();
@@ -22,7 +40,7 @@ public:
 				vector<int> temp=*iter2;
 				temp.push_back(*iter1);
 				bool GetIn = true;
-				for (vector<vector<int>>::iterator iter2 = Res.begin(); iter2 != Res.end(); ++iter2)//iter2 != Res.begin()+len;²»¶Ô£¬·ñÔò1 2 2»á²»¶Ï±»¼Ó½øResÀïÃæµÄ£¬ËÀÑ­»·
+				for (vector<vector<int>>::iterator iter2 = Res.begin(); iter2 != Res.end(); ++iter2)//iter2 != Res.begin()+len;ä¸å¯¹ï¼Œå¦åˆ™1 2 2ä¼šä¸æ–­è¢«åŠ è¿›Resé‡Œé¢çš„ï¼Œæ­»å¾ªç¯
 				{
 					if (*iter2 == temp)
 					{
@@ -32,8 +50,8 @@ public:
 				}
 				if (GetIn)
 				{
-					Res.push_back(temp);//µü´úÆ÷Ê§Ğ§£¬ÒªÖØĞÂ¶¨Òå
-					//vector<vector<int>>::iterator iter2 = Res.begin();//ÖØ¶¨Òå£¬²»¶Ô£¡
+					Res.push_back(temp);//è¿­ä»£å™¨å¤±æ•ˆï¼Œè¦é‡æ–°å®šä¹‰
+					//vector<vector<int>>::iterator iter2 = Res.begin();//é‡å®šä¹‰ï¼Œä¸å¯¹ï¼
 					iter2 = Res.begin();
 				}
 			}
@@ -53,13 +71,13 @@ public:
 				Res.push_back(temp);
 			}
 		}
-		vector<int> res1;//¿ÕÊı×é
+		vector<int> res1;//ç©ºæ•°ç»„
         Res.insert(Res.begin(),res1);
 		return Res;
 	}
 };
 
-class Solution2//»ØËİ/Éî¶ÈÓÅÏÈ±éÀú
+class Solution2//å›æº¯/æ·±åº¦ä¼˜å…ˆéå†
 {
 public:
 	vector<vector<int>> subsetsWithDup(vector<int> &S)
@@ -74,15 +92,15 @@ public:
 		for (int i = start; i < set.size(); ++i)
 		{
 			temp.push_back(set[i]);
-			dfs(set, i + 1);//i+1±íÊ¾£¬´ÓSºóÃæÊ£ÓàµÄÄÇĞ©Êı¿ªÊ¼²Ù×÷
-			while (i < set.size() - 1 && set[i] == set[i + 1])//ÔÚSµÄ·¶Î§ÄÚ£¬²¢ÇÒSÖĞÁ½ÊıÏàµÈ£¬ÔòÖ»ÓÃµÚÒ»¸ö¾Í¹»ÁË£¬ºóĞøµÄÂÓ¹ı
-				++i;//¿´ºÃÁË£¬forÖĞµÄi¿ÉÒÔ½øĞĞ²Ù×÷£¡£¡£¡£¡£¡£¡£¡
-			temp.pop_back();//[1 2 3]  µÄÊä³öÎª£º[] [1] [1,2] [1,2,3] [1,3] [2] [2,3] [3]
+			dfs(set, i + 1);//i+1è¡¨ç¤ºï¼Œä»Såé¢å‰©ä½™çš„é‚£äº›æ•°å¼€å§‹æ“ä½œ
+			while (i < set.size() - 1 && set[i] == set[i + 1])//åœ¨Sçš„èŒƒå›´å†…ï¼Œå¹¶ä¸”Sä¸­ä¸¤æ•°ç›¸ç­‰ï¼Œåˆ™åªç”¨ç¬¬ä¸€ä¸ªå°±å¤Ÿäº†ï¼Œåç»­çš„æ è¿‡
+				++i;//çœ‹å¥½äº†ï¼Œforä¸­çš„iå¯ä»¥è¿›è¡Œæ“ä½œï¼ï¼ï¼ï¼ï¼ï¼ï¼
+			temp.pop_back();//[1 2 3]  çš„è¾“å‡ºä¸ºï¼š[] [1] [1,2] [1,2,3] [1,3] [2] [2,3] [3]
 		}
 	}
 private:
 	vector<vector<int>> result;
-	vector<int> temp;//É¶Ò²²»´¦Àí£¬±¾Éí¾ÍÊÇ[]
+	vector<int> temp;//å•¥ä¹Ÿä¸å¤„ç†ï¼Œæœ¬èº«å°±æ˜¯[]
 };
 
 int main()
