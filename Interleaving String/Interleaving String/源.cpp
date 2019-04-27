@@ -1,10 +1,23 @@
+/*Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
+
+Example 1:
+
+Input: s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbcac"
+Output: true
+
+Example 2:
+
+Input: s1 = "aabcc", s2 = "dbbca", s3 = "aadbbbaccc"
+Output: false*/
+
+
 #include<cstdio>
 #include<iostream>
 #include<string>
 #include<vector>
 using namespace std;
 
-class Solution//¸´ÔÓ¶È¹ı´ó,»³ÒÉÓĞ¿ÉÄÜÊÇsubstrÅªµÄ
+class Solution//å¤æ‚åº¦è¿‡å¤§,æ€€ç–‘æœ‰å¯èƒ½æ˜¯substrå¼„çš„
 {
 public:
 	bool isInterleave(string s1, string s2, string s3)
@@ -46,7 +59,7 @@ public:
 	}
 };
 
-class Solution2//µü´ú¿ÉĞĞ·¨
+class Solution2//è¿­ä»£å¯è¡Œæ³•
 {
 public:
 	bool isInterleave(string s1, string s2, string s3)
@@ -55,7 +68,7 @@ public:
 		int len2 = s2.size();
 		int len3 = s3.size();
 
-		if ((len1 + len2) != len3)//±£Ö¤ÁËÈıÕß³¤¶È±ØĞë·ûºÏÒªÇó£¬²»»á³öÏÖÒò³¤¶ÈÎÊÌâ¶ø³öÏÖµÄÒì³£Çé¿ö£¬ºÜ¾«Ãî
+		if ((len1 + len2) != len3)//ä¿è¯äº†ä¸‰è€…é•¿åº¦å¿…é¡»ç¬¦åˆè¦æ±‚ï¼Œä¸ä¼šå‡ºç°å› é•¿åº¦é—®é¢˜è€Œå‡ºç°çš„å¼‚å¸¸æƒ…å†µï¼Œå¾ˆç²¾å¦™
 			return false;
 		if (len1 == 0 && len2 == 0 && len3 == 0)
 			return true;
@@ -63,7 +76,7 @@ public:
 		return helper(s1, s2, s3, len1,len2);
 	}
 private:
-	bool helper(string s1, string s2, string s3, int len1, int len2)//²»¶Ô×Ö·û´®½øĞĞĞŞ¸Ä£¬Ö»ÌÖÂÛ×Ö·û´®µÄ·¶Î§±ä»¯£¬ÁíÍâ´ÓºóÏòÇ°±È¶ÔÃ¿Ò»¸ö×Ö·û£¨Ö»ÊÇ·½±ãĞ´´úÂë£¬Óë¸´ÔÓ¶ÈÎŞ¹Ø£©
+	bool helper(string s1, string s2, string s3, int len1, int len2)//ä¸å¯¹å­—ç¬¦ä¸²è¿›è¡Œä¿®æ”¹ï¼Œåªè®¨è®ºå­—ç¬¦ä¸²çš„èŒƒå›´å˜åŒ–ï¼Œå¦å¤–ä»åå‘å‰æ¯”å¯¹æ¯ä¸€ä¸ªå­—ç¬¦ï¼ˆåªæ˜¯æ–¹ä¾¿å†™ä»£ç ï¼Œä¸å¤æ‚åº¦æ— å…³ï¼‰
 	{
 		if (len1 <= 0 && len2 > 0)
 		{
@@ -93,11 +106,11 @@ private:
 
 		if (s1[len1 - 1] == s3[len1 + len2 - 1] && s2[len2 - 1] != s3[len1 + len2 - 1])
 			return helper(s1, s2, s3, len1 - 1, len2);
-		return false;//Èç¹ûs3Ö¸¶¨·¶Î§ÄÚµÄÄ©Î²ºÍs1¡¢s2Ö¸¶¨·¶Î§ÄÚµÄÄ©Î²¶¼²»Ò»Ñù£¬ÄÇ¾Í½»Ö¯²»ÏÂÈ¥ÁË£¬·µ»Øfalse
+		return false;//å¦‚æœs3æŒ‡å®šèŒƒå›´å†…çš„æœ«å°¾å’Œs1ã€s2æŒ‡å®šèŒƒå›´å†…çš„æœ«å°¾éƒ½ä¸ä¸€æ ·ï¼Œé‚£å°±äº¤ç»‡ä¸ä¸‹å»äº†ï¼Œè¿”å›false
 	}
 };
 
-class Solution3//µü´ú£¬µäĞÍ¶şÎ¬Êı×é·¨
+class Solution3//è¿­ä»£ï¼Œå…¸å‹äºŒç»´æ•°ç»„æ³•
 {
 public:
 	bool isInterleave(string s1, string s2, string s3)
@@ -112,9 +125,9 @@ public:
 		vector<vector<bool>> dp(len1 + 1, vector<bool>(len2 + 1, false));
 		dp[0][0] = true;
 
-		for (int i = 1; i <= len1; ++i)//µ¥¶Às1ÄÜÊÊÅäs3¶à¾Ã
+		for (int i = 1; i <= len1; ++i)//å•ç‹¬s1èƒ½é€‚é…s3å¤šä¹…
 			dp[i][0] = dp[i - 1][0] && s1[i - 1] == s3[i - 1];
-		for (int i = 1; i <= len2; ++i)//µ¥¶Às2ÄÜÊÊÅäs3¶à¾Ã
+		for (int i = 1; i <= len2; ++i)//å•ç‹¬s2èƒ½é€‚é…s3å¤šä¹…
 			dp[0][i] = dp[0][i - 1] && s2[i - 1] == s3[i - 1];
 
 		for (int i = 1; i <= len1; ++i)
