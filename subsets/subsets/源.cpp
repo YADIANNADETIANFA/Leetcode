@@ -1,3 +1,23 @@
+/*Given a set of distinct integers, nums, return all possible subsets (the power set).
+
+Note: The solution set must not contain duplicate subsets.
+
+Example:
+
+Input: nums = [1,2,3]
+Output:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]*/
+
+
 #include<iostream>
 #include<vector>
 #include<cstdio>
@@ -26,8 +46,8 @@ public:
 			for (int i = start; i < S.size(); ++i)
 			{
 				tmp.push_back(S[i]);
-				dfs(S, i + 1, k - 1);//´ËÌâÊÇÁíÒ»ÖÖÊä³öË³Ðò£¬ºÜÖØÒª¶¼Òª±³ÏÂÀ´
-				tmp.pop_back();//[1 2 3]µÄ»°Êä³ö£º [] [1] [2] [3] [1,2] [1,3] [2,3] [1,2,3]
+				dfs(S, i + 1, k - 1);//æ­¤é¢˜æ˜¯å¦ä¸€ç§è¾“å‡ºé¡ºåºï¼Œå¾ˆé‡è¦éƒ½è¦èƒŒä¸‹æ¥
+				tmp.pop_back();//[1 2 3]çš„è¯è¾“å‡ºï¼š [] [1] [2] [3] [1,2] [1,3] [2,3] [1,2,3]
 			}
 		}
 	}
