@@ -1,3 +1,14 @@
+/*Given a string s, partition s such that every substring of the partition is a palindrome.
+
+Return the minimum cuts needed for a palindrome partitioning of s.
+
+Example:
+
+Input: "aab"
+Output: 1
+Explanation: The palindrome partitioning ["aa","b"] could be produced using 1 cut.*/
+
+
 #include<iostream>
 #include<cstdio>
 #include<vector>
@@ -5,17 +16,17 @@
 #include<string>
 using namespace std;
 
-class Solution1//µİ¹é£¬ÏÔ¶øÒ×¼û¸´ÔÓ¶È¹ı¸ß
+class Solution1//é€’å½’ï¼Œæ˜¾è€Œæ˜“è§å¤æ‚åº¦è¿‡é«˜
 {
 public:
 	int minCut(string s)
 	{
 		int len = s.size();
 		string s2 = s;
-		reverse(s2.begin(), s2.end());//reverseÊÇvoidº¯Êı
-		if (s == s2)//Èç¹ûÖ±½Ó¾ÍÊÇ»ØÎÄ×Ö·û´®ÁË£¬²»ÓÃµ¶
+		reverse(s2.begin(), s2.end());//reverseæ˜¯voidå‡½æ•°
+		if (s == s2)//å¦‚æœç›´æ¥å°±æ˜¯å›æ–‡å­—ç¬¦ä¸²äº†ï¼Œä¸ç”¨åˆ€
 			return 0;
-		int res= minCut(s.substr(0, 1)) + minCut(s.substr(1, len)) + 1;//·ñÔòµÄ»°£¬°¤¸öÎ»ÖÃµ¶£¬È¡×îĞ¡Öµ
+		int res= minCut(s.substr(0, 1)) + minCut(s.substr(1, len)) + 1;//å¦åˆ™çš„è¯ï¼ŒæŒ¨ä¸ªä½ç½®åˆ€ï¼Œå–æœ€å°å€¼
 		for (int i = 2; i < len; ++i)
 		{
 			int temp = minCut(s.substr(0, i)) + minCut(s.substr(i, len)) + 1;
@@ -26,23 +37,23 @@ public:
 	}
 };
 
-class Solution2//µü´ú£¬×ÔÏÂ¶øÉÏ£¬¾ÙÀı  aabbc£º   a,a,b,b,c,aa,ab,bb,bc,aab,abb,bbc,aabb,abbc,aabbcÖğ¸ö¿¼ÂÇ,ÖµÒÀ´Î¼ÆÈëres£¬ÒÔÃâÖØ¸´¼ÆËã
+class Solution2//è¿­ä»£ï¼Œè‡ªä¸‹è€Œä¸Šï¼Œä¸¾ä¾‹  aabbcï¼š   a,a,b,b,c,aa,ab,bb,bc,aab,abb,bbc,aabb,abbc,aabbcé€ä¸ªè€ƒè™‘,å€¼ä¾æ¬¡è®¡å…¥resï¼Œä»¥å…é‡å¤è®¡ç®—
 {
 public:
 	int minCut(string s)
 	{
 		int len = s.size();
-		vector<vector<int>> res (len, vector<int>(len, 0));//res[i][j]±íÊ¾×Ö·ûiºÍ×Ö·ûjÖ®¼ä£¨°üÀ¨i¡¢j£©µÄ×Ö·û´®£¬ËùĞèµ¶Êı
+		vector<vector<int>> res (len, vector<int>(len, 0));//res[i][j]è¡¨ç¤ºå­—ç¬¦iå’Œå­—ç¬¦jä¹‹é—´ï¼ˆåŒ…æ‹¬iã€jï¼‰çš„å­—ç¬¦ä¸²ï¼Œæ‰€éœ€åˆ€æ•°
 		for (int i = 0; i < len; ++i)
-			res[i][i] = 0;//µ¥¸ö×Ö·û²»ÓÃµ¶
-		for (int last = 1; last <= len; ++last)//i~j×Ö·û´®µÄ³¤¶È
+			res[i][i] = 0;//å•ä¸ªå­—ç¬¦ä¸ç”¨åˆ€
+		for (int last = 1; last <= len; ++last)//i~jå­—ç¬¦ä¸²çš„é•¿åº¦
 		{
-			for (int start = 0; start + last < len; ++start)//i~j×Ö·û´®µÄÆğÊ¼Î»ÖÃ
+			for (int start = 0; start + last < len; ++start)//i~jå­—ç¬¦ä¸²çš„èµ·å§‹ä½ç½®
 			{
 				string s1 = s.substr(start, last+1);
 				string s2 = s1;
 				reverse(s2.begin(), s2.end());
-				if (s1 == s2)//Èç¹ûÖ±½Ó»ØÎÄ£¬²»ÓÃµ¶
+				if (s1 == s2)//å¦‚æœç›´æ¥å›æ–‡ï¼Œä¸ç”¨åˆ€
 					res[start][start + last] = 0;
 				else
 				{
@@ -57,7 +68,7 @@ public:
 				}
 			}
 		}
-		return res[0][len-1];//Ô­Ê¼sĞèÒªµÄµ¶Êı
+		return res[0][len-1];//åŸå§‹séœ€è¦çš„åˆ€æ•°
 	}
 };
 

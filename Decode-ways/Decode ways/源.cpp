@@ -1,3 +1,25 @@
+/*A message containing letters from A-Z is being encoded to numbers using the following mapping:
+
+'A' -> 1
+'B' -> 2
+...
+'Z' -> 26
+
+Given a non-empty string containing only digits, determine the total number of ways to decode it.
+
+Example 1:
+
+Input: "12"
+Output: 2
+Explanation: It could be decoded as "AB" (1 2) or "L" (12).
+
+Example 2:
+
+Input: "226"
+Output: 3
+Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).*/
+
+
 #include<cstdio>
 #include<iostream>
 #include<string>
@@ -5,7 +27,7 @@
 #include<vector>
 using namespace std;
 
-/*class Solution//ÌìÕæµÄÈÏÎª£¬´ÓºóÍùÇ°µü´úºÜÈÝÒ×£¬µ«ÊÇÈ´²ÒµÄÒ»ËúºýÍ¿
+/*class Solution//å¤©çœŸçš„è®¤ä¸ºï¼Œä»ŽåŽå¾€å‰è¿­ä»£å¾ˆå®¹æ˜“ï¼Œä½†æ˜¯å´æƒ¨çš„ä¸€å¡Œç³Šæ¶‚
 {
 public:
 	int numDecodings(string s)
@@ -27,7 +49,7 @@ public:
 		}
 
 		int temp1, temp2;
-		if (s[len - 2] == '1' && s[len - 1] > '0' && s[len - 1] <= '9')//ÊÇ´óÓÚ0£¬²»ÊÇ´óÓÚµÈÓÚ0£¡£¡
+		if (s[len - 2] == '1' && s[len - 1] > '0' && s[len - 1] <= '9')//æ˜¯å¤§äºŽ0ï¼Œä¸æ˜¯å¤§äºŽç­‰äºŽ0ï¼ï¼
 			temp1 = 2;
 		else if (s[len - 2] == '2' && s[len - 1] > '0' && s[len - 1] <= '6')
 			temp1 = 2;
@@ -48,7 +70,7 @@ public:
 			if (s[i] == '0' && s[i + 1] == '0')//"100"
 				return 0;
 			int current_num = 0;
-			if (s[i] =='1' && s[i+1]!='0')//ÈÝÒ×Íü¼Ç¼Ó''£¬ÏÔµÃºÜlow
+			if (s[i] =='1' && s[i+1]!='0')//å®¹æ˜“å¿˜è®°åŠ ''ï¼Œæ˜¾å¾—å¾ˆlow
 				current_num = temp2+temp1;
 			else if (s[i] == '2' && s[i + 1] > '0' && s[i + 1] <= '6')
 				current_num = temp2 + temp1;
@@ -62,7 +84,7 @@ public:
 	}
 };*/
 
-class Solution2//´ÓÇ°ÍùºóµÄµü´úËã·¨
+class Solution2//ä»Žå‰å¾€åŽçš„è¿­ä»£ç®—æ³•
 {
 public:
 	int numDecodings(string s)
@@ -78,11 +100,11 @@ public:
 		int now_num = 0;
 
 		for (int i = 1; i <= len - 1; ++i)
-		{//µ±Ç°Î»µÄÖµÓÉÁ½²¿·Ö×é³É£¬¼´µ¥×ßºÍ¸úÇ°Ãæ×éºÏ×ß£¬Á½ÖÖÇé¿ö
-			now_num = 0;//ºÜÖØÒª£¬Ã¿´Î¶¼Òª³õÊ¼»¯£¡£¡£¡£¡
-			if (s[i] >= '1' && s[i] <= '9')//Èç¹ûµ±Ç°Î»¿ÉÒÔµ¥×ß£¬ÄÇ¾Í¼ÓÉÏµ¥×ßµÄÖµ
+		{//å½“å‰ä½çš„å€¼ç”±ä¸¤éƒ¨åˆ†ç»„æˆï¼Œå³å•èµ°å’Œè·Ÿå‰é¢ç»„åˆèµ°ï¼Œä¸¤ç§æƒ…å†µ
+			now_num = 0;//å¾ˆé‡è¦ï¼Œæ¯æ¬¡éƒ½è¦åˆå§‹åŒ–ï¼ï¼ï¼ï¼
+			if (s[i] >= '1' && s[i] <= '9')//å¦‚æžœå½“å‰ä½å¯ä»¥å•èµ°ï¼Œé‚£å°±åŠ ä¸Šå•èµ°çš„å€¼
 				now_num += left;
-			if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] >= '0' && s[i] <= '6'))//Èç¹û¿ÉÒÔºÍÇ°Ãæ×éºÏ×ß£¬ÄÇ¾Í¼ÓÉÏ×éºÏ×ßµÄÖµ
+			if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] >= '0' && s[i] <= '6'))//å¦‚æžœå¯ä»¥å’Œå‰é¢ç»„åˆèµ°ï¼Œé‚£å°±åŠ ä¸Šç»„åˆèµ°çš„å€¼
 				now_num += left_left;
 
 			left_left = left;
