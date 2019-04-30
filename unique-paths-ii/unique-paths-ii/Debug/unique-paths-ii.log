@@ -1,0 +1,7 @@
+﻿  源.cpp
+c:\users\雅典娜的天罚\desktop\牛客网\leetcode\leetcode\unique-paths-ii\unique-paths-ii\源.cpp(66): warning C4244: “return”: 从“_Ty”转换到“int”，可能丢失数据
+          with
+          [
+              _Ty=__int64
+          ]
+  unique-paths-ii.vcxproj -> C:\Users\雅典娜的天罚\Desktop\牛客网\leetcode\Leetcode\unique-paths-ii\Debug\unique-paths-ii.exe
