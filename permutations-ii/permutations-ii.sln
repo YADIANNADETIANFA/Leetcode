@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "permutations-ii", "permutations-ii\permutations-ii.vcxproj", "{6F2A212E-F72F-41D1-88D6-7525D4587685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Debug|x64.ActiveCfg = Debug|x64
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Debug|x64.Build.0 = Debug|x64
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Debug|x86.ActiveCfg = Debug|Win32
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Debug|x86.Build.0 = Debug|Win32
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Release|x64.ActiveCfg = Release|x64
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Release|x64.Build.0 = Release|x64
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Release|x86.ActiveCfg = Release|Win32
+		{6F2A212E-F72F-41D1-88D6-7525D4587685}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A73D461-DEA5-48BE-97DB-71E4A9F946CA}
+	EndGlobalSection
+EndGlobal
