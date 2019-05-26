@@ -1,11 +1,11 @@
 /*Sort a linked list using insertion sort.*/
-//×¢ÒâÊ¹ÓÃ²åÈëÅÅĞò£¬²»ÊÇÑ¡ÔñÅÅĞò
+//æ³¨æ„ä½¿ç”¨æ’å…¥æ’åºï¼Œä¸æ˜¯é€‰æ‹©æ’åº
 #include<cstdio>
 #include<iostream>
 #include"ListNode.h"
 using namespace std;
 
-class Solution1//´´½¨Ò»¸öĞÂµÄÁ´±í,Ã²ËÆÖ»ÊÇ²»¶ÏÒÆ¶¯Ö¸ÕëÖ¸Ïò£¬Ã»ÓĞÕ¼ÓÃĞÂµÄÄÚ´æ¿Õ¼ä°É
+class Solution1//åˆ›å»ºä¸€ä¸ªæ–°çš„é“¾è¡¨,è²Œä¼¼åªæ˜¯ä¸æ–­ç§»åŠ¨æŒ‡é’ˆæŒ‡å‘ï¼Œæ²¡æœ‰å ç”¨æ–°çš„å†…å­˜ç©ºé—´å§
 {
 public:
 	ListNode *insertionSortList(ListNode *head) 
@@ -13,18 +13,39 @@ public:
 		if (head == nullptr || head->next == nullptr)
 			return head;
 
-		ListNode* dummy = new ListNode(0);//´´½¨Ò»¸öĞÂÁ´±í£¬×¢Òâ´´½¨·½·¨
+		ListNode* dummy = new ListNode(0);//åˆ›å»ºä¸€ä¸ªæ–°é“¾è¡¨ï¼Œæ³¨æ„åˆ›å»ºæ–¹æ³•
 		ListNode* cur = head;
 		while (cur != nullptr)
 		{
-			ListNode* cur_next = cur->next;//±£´æÒ»ÏÂ£¬Ò»»áºÃ´ÓÕâÀï¿ªÊ¼ÏÂÒ»´ÎµÄÑ­»·
-			ListNode* p = dummy;//Ã¿´Î¶¼´ÓÍ·¿ªÊ¼£¬±éÀúÒÑÅÅĞòºÃÁËµÄÁ´±í
+			ListNode* cur_next = cur->next;//ä¿å­˜ä¸€ä¸‹ï¼Œä¸€ä¼šå¥½ä»è¿™é‡Œå¼€å§‹ä¸‹ä¸€æ¬¡çš„å¾ªç¯
+			ListNode* p = dummy;//æ¯æ¬¡éƒ½ä»å¤´å¼€å§‹ï¼Œéå†å·²æ’åºå¥½äº†çš„é“¾è¡¨
 			while (p->next != nullptr && p->next->val <= cur->val)
-				p = p->next;
-			cur->next = p->next;//°Ñcur²åÈëµ½pºÍp->nextÖ®¼ä£¬ËùÒÔcurµÄºóÃæÒªĞ´Îªp->next
+				p = p->next;//åªæ”¹pï¼Œä¸ä¼šæ”¹å˜dummyçš„
+			cur->next = p->next;//æŠŠcuræ’å…¥åˆ°på’Œp->nextä¹‹é—´ï¼Œæ‰€ä»¥curçš„åé¢è¦å†™ä¸ºp->next   //ä¸¾ä¾‹ï¼šé¦–æ¬¡è°ƒç”¨æ—¶ï¼Œheadä¹Ÿä¼šè·Ÿç€curä¸€èµ·å˜å†…å®¹
 			p->next = cur;
-			cur = cur_next;//Ç°Ãæ±£´æµÄ¶«Î÷ÓÃÉÏÁË
+			cur = cur_next;//å‰é¢ä¿å­˜çš„ä¸œè¥¿ç”¨ä¸Šäº†
 		}
 		return dummy->next;
 	}
 };
+
+
+int main()
+{
+	Solution1 Res;
+
+	ListNode* pNode1 = new ListNode(3);
+	ListNode* pNode2 = new ListNode(4);
+	ListNode* pNode3 = new ListNode(5);
+	ListNode* pNode4 = new ListNode(2);
+	ListNode* pNode5 = new ListNode(1);
+
+	pNode1->next = pNode2;
+	pNode2->next = pNode3;
+	pNode3->next = pNode4;
+	pNode4->next = pNode5;
+
+	ListNode* res = Res.insertionSortList(pNode1);
+
+	return 0;
+}
