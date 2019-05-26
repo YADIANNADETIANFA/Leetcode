@@ -5,7 +5,7 @@
 #include"ListNode.h"
 using namespace std;
 
-class Solution1//创建一个新的链表,貌似只是不断移动指针指向，没有占用新的内存空间吧
+class Solution1//创建一个新的链表,只是不断移动指针指向，没有占用新的内存空间
 {
 public:
 	ListNode *insertionSortList(ListNode *head) 
