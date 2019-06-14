@@ -107,8 +107,8 @@ public:
 			if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] >= '0' && s[i] <= '6'))//如果可以和前面组合走，那就加上组合走的值
 				now_num += left_left;
 
-			left_left = left;
-			left = now_num;
+			left_left = left;//使得left_left存储上上次的now_num
+			left = now_num;//使得left存储上次的now_num
 		}
 		return now_num;
 	}
