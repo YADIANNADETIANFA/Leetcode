@@ -52,9 +52,9 @@ public:
 
 		dp[0][0] = 0;
 		for (int i = 1; i <= len1; ++i)
-			dp[i][0] = i;
+			dp[i][0] = i;//等于1,2,3.....
 		for (int i = 1; i <= len2; ++i)
-			dp[0][i] = i;
+			dp[0][i] = i;//等于1,2,3....
 
 		for (int i = 1; i <= len1; ++i)
 		{
