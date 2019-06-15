@@ -106,11 +106,23 @@ public:
 	{
 		int len_s = S.size();
 		int len_t = T.size();
-		vector<int> num(len_s, 0);
-		for (int i = len_s - 1; i >= 0; --i)
-		{
+		vector<vector<int>> num(len_t+1, vector<int>(len_s+1, 0));//此处的二维数组用法是，每个格子里存放当前的匹配成功次数
+		for (int i = 0; i <= len_s; ++i)
+			num[0][i] = 1;//T一个字母都没出，初始化1
+		for (int j = 1; j <= len_t; ++j)
+			num[j][0] = 0;//S一个字母都没出，初始化0，注意一下，斜对角线左下方都是0，num初始化后是全0的！
 
+		for (int i = 1; i <= len_t; ++i)
+		{
+			for (int j = i; j <= len_s; ++j)//j从i开始就可以，因为两个s值不可能匹配出三个t值类似这样
+			{
+				if (S[j - 1] != T[i - 1])
+					num[i][j] = num[i][j - 1];//新的值不匹配，那等于不用S的新值时匹配的结果
+				else
+					num[i][j] = num[i][j - 1] + num[i - 1][j - 1];//新值匹配，那等于不用S的新值时匹配的结果，和用S的新值时匹配的结果，加和
+			}
 		}
+		return num[len_t][len_s];//只要T触底即可，即T全匹配出来了即可
 	}
 };
 int main()
