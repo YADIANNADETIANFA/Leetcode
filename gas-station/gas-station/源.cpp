@@ -15,7 +15,7 @@ public:
 			Sum += gas[i];
 		for (int i = 0; i < cost_size; ++i)
 			Cost += cost[i];
-		if (Sum < Cost)//×ÜµÄ²»¹»£¬Ö±½Ó-1
+		if (Sum < Cost)//æ€»çš„ä¸å¤Ÿï¼Œç›´æ¥-1
 			return -1;
 
 		int start = gas_size - 1;
@@ -23,9 +23,9 @@ public:
 		Sum = gas[start];
 		Cost = cost[start];
 
-		while (start > end)//´Óstart³ö·¢£¬ Èç¹ûÓÍÁ¿×ã¹»£¬ ¿ÉÒÔÒ»Ö±Ïòºó×ß end++£»  ÓÍÁ¿²»¹»µÄÊ±ºò£¬
-		{                  //startÏòºóÍË  ×îÖÕ start == endµÄÊ±ºò£¬Èç¹ûÓĞ½âÒ»¶¨ÊÇµ±Ç° startËùÔÚÎ»ÖÃ
-			if (Sum >= Cost)//²»ÀË·Ñµ±Ç°ÒÑ¾­Ñ­»·¹ıµÄÕ¾µÄÊı¾İ£¬ºÜ¾«Ãî£¡£¡£¡
+		while (start > end)//ä»startå‡ºå‘ï¼Œ å¦‚æœæ²¹é‡è¶³å¤Ÿï¼Œ å¯ä»¥ä¸€ç›´å‘åèµ° end++ï¼›  æ²¹é‡ä¸å¤Ÿçš„æ—¶å€™ï¼Œ
+		{                  //startå‘åé€€  æœ€ç»ˆ start == endçš„æ—¶å€™ï¼Œå¦‚æœæœ‰è§£ä¸€å®šæ˜¯å½“å‰ startæ‰€åœ¨ä½ç½®
+			if (Sum >= Cost)//ä¸æµªè´¹å½“å‰å·²ç»å¾ªç¯è¿‡çš„ç«™çš„æ•°æ®ï¼Œå¾ˆç²¾å¦™ï¼ï¼ï¼
 			{
 				Sum += gas[end];
 				Cost += cost[end];
@@ -38,7 +38,7 @@ public:
 				Cost += cost[start];
 			}
 		}
-		return Sum >= 0 ? start : -1;
+		return Sum >= 0 ? start : -1;//æ²¡å‘ç°Sumå“ªé‡Œæœ‰å‡çš„æ“ä½œï¼Œç›´æ¥è¿”å›startåº”è¯¥æ²¡é—®é¢˜
 	}
 };
 
