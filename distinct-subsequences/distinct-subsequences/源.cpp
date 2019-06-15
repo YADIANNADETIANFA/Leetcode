@@ -48,7 +48,7 @@ using namespace std;
 class Solution1//递归，复杂度过大
 {
 public:
-	int numDistinct(string S, string T)
+	/*int numDistinct(string S, string T)
 	{
 		int len_S = S.size();
 		int len_T = T.size();
@@ -65,6 +65,37 @@ public:
 				res += 1;
 		}
 		return res;
+	}*/
+	void dfs(string S, string T, int len_s, int len_t, int start_s, int start_t, int &num)
+	{
+		if (len_s - start_s < len_t - start_t)
+			return;
+		if (start_t == len_t)
+		{
+			num += 1;
+			return;
+		}
+		for (int i = start_s; i < len_s; ++i)
+		{
+			if (S[i] == T[start_t])
+			{
+				dfs(S, T, len_s, len_t, i + 1, start_t + 1, num);
+			}
+		}
+		return;
+	}
+	int numDistinct(string S, string T)//无论是否substr，就算只用index也是照样复杂度过大，主要是这题的测试用例很变态
+	{                                  //所以最好的解决此类问题就是，二维数组法
+		int len_s = S.size();
+		int len_t = T.size();
+		if (len_s < len_t)
+			return 0;
+
+		int start_s = 0;
+		int start_t = 0;
+		int num = 0;
+		dfs(S, T, len_s, len_t, start_s, start_t, num);
+		return num;
 	}
 };
 
