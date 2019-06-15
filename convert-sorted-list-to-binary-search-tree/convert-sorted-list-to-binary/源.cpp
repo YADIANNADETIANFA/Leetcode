@@ -1,5 +1,5 @@
 /*Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.*/
-//µİÔöÁ´±í¸ÄÎªÆ½ºâ¶ş²æËÑË÷Ê÷Ã´£¿
+//é€’å¢é“¾è¡¨æ”¹ä¸ºå¹³è¡¡äºŒå‰æœç´¢æ ‘ä¹ˆï¼Ÿ
 #include<cstdio>
 #include<iostream>
 #include"ListNode.h"
@@ -8,13 +8,13 @@ using namespace std;
 
 class Solution 
 {
-	TreeNode* Get_BST(ListNode* head, ListNode* tail)//Éè¼ÆµÄºÜ¾«Ãî£¬ÓÈÆäÊÇtailµÄÀûÓÃ£¬Òª×Ô¼º¶¯ÊÖ»­»­²ÅÄÜÀí½â°ÂÒå
+	TreeNode* Get_BST(ListNode* head, ListNode* tail)//è®¾è®¡çš„å¾ˆç²¾å¦™ï¼Œå°¤å…¶æ˜¯tailçš„åˆ©ç”¨ï¼Œè¦è‡ªå·±åŠ¨æ‰‹ç”»ç”»æ‰èƒ½ç†è§£å¥¥ä¹‰
 	{
 		if (head == tail)
 			return nullptr;
-		ListNode* fast = head;//¿ìÂıÖ¸ÕëÕÒÖĞ¼ä½Úµã
+		ListNode* fast = head;//å¿«æ…¢æŒ‡é’ˆæ‰¾ä¸­é—´èŠ‚ç‚¹
 		ListNode* slow = head;
-		while (fast != tail && fast->next != tail)//ºÍtail±È½Ï£¬²»ÊÇºÍnullptr±È½Ï,×Ü°®Ğ´³Éfast != nullptr && fast->next != nullptr,ÕâÊÇ´íµÄ   //ÁíÍâ£¬Å¼ÊıµãµÄ»°£¬ÖĞ¼ä½ÚµãÈ¡ºóÃæÄÇ¸ö
+		while (fast != tail && fast->next != tail)//å’Œtailæ¯”è¾ƒï¼Œä¸æ˜¯å’Œnullptræ¯”è¾ƒ,æ€»çˆ±å†™æˆfast != nullptr && fast->next != nullptr,è¿™æ˜¯é”™çš„   //å¦å¤–ï¼Œå¶æ•°ç‚¹çš„è¯ï¼Œä¸­é—´èŠ‚ç‚¹å–åé¢é‚£ä¸ª
 		{
 			slow = slow->next;
 			fast = fast->next->next;
@@ -24,9 +24,29 @@ class Solution
 		pRoot->right = Get_BST(slow->next, tail);
 		return pRoot;
 	}
+	
+	void Get_List(TreeNode* pRoot,ListNode* &pNode)//Get_Listå’ŒBST_To_Listç”¨äºäºŒå‰æ ‘è½¬é“¾è¡¨ï¼Œå…¶å®å°±ç‰¹ä¹ˆçš„ä¸­åºéå†ï¼ï¼
+	{
+		if (pRoot == nullptr)
+			return;
+		Get_List(pRoot->left,pNode);
+		ListNode* pNew = new ListNode(pRoot->val);
+		pNode->next = pNew;
+		pNode = pNode->next;
+		Get_List(pRoot->right,pNode);
+		return;
+	}
 public:
 	TreeNode *sortedListToBST(ListNode *head) 
 	{
 		return Get_BST(head, nullptr);
+	}
+	
+	ListNode* BST_To_List(TreeNode* pRoot)
+	{
+		ListNode* pHead = new ListNode(0);
+		ListNode* pNode = pHead;
+		Get_List(pRoot,pNode);
+		return pHead->next;
 	}
 };
