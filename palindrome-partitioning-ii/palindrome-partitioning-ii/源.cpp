@@ -46,7 +46,7 @@ public:
 		vector<vector<int>> res (len, vector<int>(len, 0));//res[i][j]表示字符i和字符j之间（包括i、j）的字符串，所需刀数
 		for (int i = 0; i < len; ++i)
 			res[i][i] = 0;//单个字符不用刀
-		for (int last = 1; last <= len; ++last)//last表示i~j字符串的长度
+		for (int last = 1; last <= len; ++last)//last表示，从start开始，后移几位后的位置
 		{
 			for (int start = 0; start + last < len; ++start)//start表示i~j字符串的起始位置
 			{
