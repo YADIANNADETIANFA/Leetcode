@@ -46,9 +46,9 @@ public:
 		vector<vector<int>> res (len, vector<int>(len, 0));//res[i][j]表示字符i和字符j之间（包括i、j）的字符串，所需刀数
 		for (int i = 0; i < len; ++i)
 			res[i][i] = 0;//单个字符不用刀
-		for (int last = 1; last <= len; ++last)//i~j字符串的长度
+		for (int last = 1; last <= len; ++last)//last表示i~j字符串的长度
 		{
-			for (int start = 0; start + last < len; ++start)//i~j字符串的起始位置
+			for (int start = 0; start + last < len; ++start)//start表示i~j字符串的起始位置
 			{
 				string s1 = s.substr(start, last+1);
 				string s2 = s1;
@@ -57,10 +57,10 @@ public:
 					res[start][start + last] = 0;
 				else
 				{
-					int min_value = res[start][start] + res[start+1][start + last] + 1;
+					int min_value = res[start][start] + res[start+1][start + last] + 1;//不要看做二维数组，很容易理解
 					for (int i = 1; i < last; ++i)
 					{
-						int temp = res[start][start + i] + res[start + i + 1][start + last] + 1;
+						int temp = res[start][start + i] + res[start + i + 1][start + last] + 1;//与Solution1如出一辙
 						if (temp < min_value)
 							min_value = temp;
 					}
