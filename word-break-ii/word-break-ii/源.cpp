@@ -59,7 +59,7 @@ public:
 		int len = s.size();
 		for (int i = 1; i < len; ++i)
 		{
-			string word = s.substr(i);//word是s从s[i]到s末尾的那那个字符串
+			string word = s.substr(i);//word是s从s[i]到s末尾的那那个字符串 //word是先长的，后短的！
 			if (dict.find(word) == dict.end())//word不是dict中的任何一个
 				continue;
 			vector<string> tempRes = wordBreak(s.substr(0, i), dict);
