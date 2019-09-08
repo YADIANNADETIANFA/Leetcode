@@ -2,7 +2,7 @@
 The same repeated number may be chosen from C unlimited number of times.
 Note:
 All numbers(including target) will be positive integers.
-Elements in a combination(a 1, a 2, ¡­, a k) must be in non - descending order. (ie, a 1 ¡Ü a 2 ¡Ü ¡­ ¡Ü a k).
+Elements in a combination(a 1, a 2, â€¦, a k) must be in non - descending order. (ie, a 1 â‰¤ a 2 â‰¤ â€¦ â‰¤ a k).
 The solution set must not contain duplicate combinations.
 
 For example, given candidate set2, 3, 6, 7 and target7,
@@ -16,7 +16,7 @@ A solution set is :
 #include<algorithm>
 using namespace std;
 
-class Solution //ÎŞÄÔÉî¶ÈÓÅÏÈ±éÀúdfs
+class Solution //æ— è„‘æ·±åº¦ä¼˜å…ˆéå†dfs
 {
 	set<vector<int>> st;
 public:
@@ -46,8 +46,9 @@ public:
 			if (current_sum + candidates[i] <= target)
 			{
 				temp.push_back(candidates[i]);
+				//æ— è®ºæ˜¯å¦å¯ä»¥é‡å¤ä½¿ç”¨ä¸€ä¸ªå€¼ï¼Œdfsçš„å…³é”®ï¼Œåœ¨äºè¿™ä¸ªstartèµ·å§‹ä½ç½®ï¼ï¼
 				dfs(i + 1, candidates, target, temp, current_sum + candidates[i]);
-				dfs(i, candidates, target, temp, current_sum + candidates[i]);//Ò»¸öÖµ¿ÉÒÔÖØ¸´Ê¹ÓÃ,Î¨Ò»µÄÇø±ğÔÚÕâÀï
+				dfs(i, candidates, target, temp, current_sum + candidates[i]);//ä¸€ä¸ªå€¼å¯ä»¥é‡å¤ä½¿ç”¨,å”¯ä¸€çš„åŒºåˆ«åœ¨è¿™é‡Œ
 				temp.pop_back();
 
 			}
